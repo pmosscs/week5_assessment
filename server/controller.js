@@ -33,12 +33,12 @@ module.exports = {
 
     getCities: (req, res) => {
         sequelize.query(`
-        SELECT cities.city_id, cities.name city, cities.rating rating, countries.country_id, countries.name country
+        SELECT cities.city_id, cities.name city, cities.rating, countries.country_id, countries.name country
         FROM cities
         JOIN countries
         ON cities.country_id = countries.country_id;
         `)
-        .then(dbRes => res.status(200).send(dbRes))
+        .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))
     },
 
